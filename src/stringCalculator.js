@@ -6,11 +6,15 @@
 
 // module.exports = { add };
 
-test('returns the number when there is one number', () => {
-    expect(add("1")).toBe(1);
-});
 
-test('returns the sum of two numbers', () => {
-    expect(add("1,2")).toBe(3);
-});
-
+function add(numbers) {
+    if (numbers === "") return 0;
+    let delimiter = /[\n,]/;
+    if (numbers.startsWith("//")) {
+        const parts = numbers.split("\n");
+        delimiter = new RegExp(parts[0].slice(2));
+        numbers = parts[1];
+    }
+    const numArray = numbers.split(delimiter);
+    return numArray.reduce((sum, num) => sum + parseInt(num), 0);
+}

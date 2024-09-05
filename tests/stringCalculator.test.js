@@ -4,10 +4,7 @@
 //     expect(add("")).toBe(0);
 // });
 
-function add(numbers) {
-    if (numbers === "") return 0;
 
-    const numberArray = numbers.split(',');
-    const sum = numberArray.reduce((acc, curr) => acc + parseInt(curr), 0);
-    return sum;
-}
+test('supports different delimiters', () => {
+    expect(add("//;\n1;2")).toBe(3);
+});
